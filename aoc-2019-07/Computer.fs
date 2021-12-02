@@ -46,7 +46,7 @@ module Computer =
                 ip = comp.ip + move }
         let jumpIf b newIp =
             if b then { comp with ip = newIp }
-                 else { comp with ip = comp.ip + 2 }
+                 else { comp with ip = comp.ip + 3 }
         match nextInstruction comp with
         | 99, _ ->
             { comp with finished = true }
@@ -84,9 +84,14 @@ module Computer =
             finished = false
         }
 
+    let isWaitingForInput = nextInstruction >> fst >> (=)3
+
     let run comp = 
+        let comp = { comp with output = None }
         let rec loop c =
             if c.finished
+                || (isWaitingForInput c && c.inputs = [])
+                || (c.output.IsSome)
             then c
             else c |> step |> loop
         loop comp

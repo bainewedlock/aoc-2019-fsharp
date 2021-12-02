@@ -3,6 +3,8 @@ open Solution
 let input = System.IO.File.ReadAllText "input.txt"
 
 [<EntryPoint>]
+
+
 let main argv =
 
     solve input
@@ -11,6 +13,6 @@ let main argv =
 
     solve2 input
     |> printfn "solution 2: %A"
-    printfn "(accepted answer: ?)"
+    printfn "(accepted answer: 89603079)"
 
     0
