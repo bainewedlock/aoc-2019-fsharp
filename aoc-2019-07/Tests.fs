@@ -5,7 +5,6 @@ let  utest = test
 open Expecto
 
 open Solution
-open Demoinput
 open Computer
 
 [<Tests>]

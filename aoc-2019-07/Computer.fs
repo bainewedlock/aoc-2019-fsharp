@@ -16,6 +16,11 @@ module Computer =
         opcode : int
         parameters : Parameter List }
 
+    let isFinished comp = comp.finished
+
+    let addInput comp input =
+        { comp with inputs = comp.inputs @ [input] }
+
     let parameters (xs:int list) =
         (string xs.Head).PadLeft(5, '0').Substring(0, 3)
         |> Seq.toList
@@ -74,7 +79,7 @@ module Computer =
     let parse (input:string) =
         {
             ip = 0
-            inputs = [0]
+            inputs = []
             output = None
             memory =
                 input.Split ','
